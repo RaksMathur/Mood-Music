@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mood Music</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>🎵 Mood Music</h1>
+        <p>How are you feeling today?</p>
+
+        <div class="filter">
+            <label for="popularity">Only show popular songs</label>
+            <select id="popularity" name="popularity" form="moodform">
+                <option value="0">All songs</option>
+                <option value="50">Moderately popular</option>
+                <option value="70">Very popular</option>
+                <option value="85">Top hits only</option>
+            </select>
+        </div>
+
+        <form id="moodform" action="/recommend" method="POST">
+            <input type="hidden" name="popularity" id="pop-input" value="0">
+            <div class="mood-grid">
+                <button type="submit" name="mood" value="happy" onclick="submitMood()">😊 Happy</button>
+                <button type="submit" name="mood" value="sad" onclick="submitMood()">😢 Sad</button>
+                <button type="submit" name="mood" value="energetic" onclick="submitMood()">⚡ Energetic</button>
+                <button type="submit" name="mood" value="calm" onclick="submitMood()">😌 Calm</button>
+                <button type="submit" name="mood" value="angry" onclick="submitMood()">😠 Angry</button>
+                <button type="submit" name="mood" value="romantic" onclick="submitMood()">❤️ Romantic</button>
+            </div>
+        </form>
+
+        <div class="spinner" id="spinner">
+            <div class="spin"></div>
+            <p>Finding your songs...</p>
+        </div>
+    </div>
+
+    <script>
+        function submitMood() {
+            document.getElementById('pop-input').value = document.getElementById('popularity').value;
+            document.getElementById('spinner').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
