@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Results - Mood Music</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>🎵 Songs for your {{ mood }} mood</h1>
+        <p>Here are 20 songs picked just for you</p>
+
+        <div class="songs-grid">
+            {% for song in songs %}
+            <div class="song-card">
+                <h3>{{ song.track_name }}</h3>
+                <p class="artist">🎤 {{ song.artists }}</p>
+                <p class="album">💿 {{ song.album_name }}</p>
+                <p class="popularity">⭐ Popularity: {{ song.popularity }}/100</p>
+            </div>
+            {% endfor %}
+        </div>
+
+        <a href="/" class="back-btn">← Try another mood</a>
+    </div>
+</body>
+</html>
